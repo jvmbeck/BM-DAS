@@ -73,6 +73,19 @@
       ></q-btn>
       <q-btn class="on-right" label="próxima" @click="perguntaProxima"></q-btn>
     </div>
+
+    <q-circular-progress
+      show-value
+      font-size="12px"
+      :value="valorBarra"
+      size="50px"
+      :thickness="0.22"
+      color="teal"
+      track-color="grey-3"
+      class="q-ma-md"
+    >
+      {{ valorBarra }}%
+    </q-circular-progress>
   </q-page>
 </template>
 
@@ -90,7 +103,7 @@ export default {
       pergunta: "perguntateste",
       resposta: ref(3),
       idx: 0,
-      valorBarra: 3,
+      valorBarra: 0,
     };
   },
 
@@ -107,8 +120,8 @@ export default {
       this.pergunta = services.getPergunta(this.idx);
     },
     perguntaProxima() {
+      this.moveBarra();
       if (this.idx < services.getTamanhoLista() - 1) {
-        this.moveBarra();
         this.idx++;
         this.pergunta = services.getPergunta(this.idx);
       }
