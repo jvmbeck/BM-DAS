@@ -66,11 +66,7 @@
     </q-card>
 
     <div class="perguntas">
-      <q-btn
-        class="on-left"
-        label="anteroior"
-        @click="perguntaAnterior"
-      ></q-btn>
+      <q-btn class="on-left" label="anterior" @click="perguntaAnterior"></q-btn>
       <q-btn class="on-right" label="próxima" @click="perguntaProxima"></q-btn>
     </div>
 
@@ -119,7 +115,6 @@ export default {
         this.idx--;
       }
       this.moveBarra();
-
       this.pergunta = services.getPergunta(this.idx);
     },
     perguntaProxima() {
@@ -127,6 +122,7 @@ export default {
       if (this.idx < services.getTamanhoLista() - 1) {
         this.idx++;
         this.pergunta = services.getPergunta(this.idx);
+        services.salvaResposta(this.resposta, this.idx);
       }
     },
     moveBarra() {
