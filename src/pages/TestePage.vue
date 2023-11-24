@@ -96,11 +96,14 @@ import services from "../services/services";
 export default {
   name: "TestePage",
 
-  setup() {},
+  setup() {
+    return {
+      pergunta: "perguntateste",
+    };
+  },
 
   data() {
     return {
-      pergunta: "perguntateste",
       resposta: ref(3),
       idx: 0,
       valorBarra: 0,
