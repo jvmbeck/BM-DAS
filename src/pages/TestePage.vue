@@ -68,10 +68,22 @@
     <div class="perguntas">
       <q-btn
         class="on-left"
-        label="anteroior"
+        label="anterior"
+        :style="visivelAnterior ? 'visibility: visible' : 'visibility: hidden'"
         @click="perguntaAnterior"
       ></q-btn>
-      <q-btn class="on-right" label="próxima" @click="perguntaProxima"></q-btn>
+      <q-btn
+        class="on-right"
+        label="próxima"
+        v-show="visivelProximo"
+        @click="perguntaProxima"
+      ></q-btn>
+      <q-btn
+        class="on-right"
+        label="resultados"
+        v-show="visivelResultado"
+        to="/resultados"
+      ></q-btn>
     </div>
 
     <q-circular-progress
@@ -96,34 +108,46 @@ import services from "../services/services";
 export default {
   name: "TestePage",
 
-  setup() {},
-
   data() {
     return {
-      pergunta: "perguntateste",
-      resposta: ref(3),
+      visivelAnterior: false,
+      visivelProximo: true,
+      visivelResultado: false,
+      resposta: 0,
       idx: 0,
       valorBarra: 0,
+      pergunta: "",
     };
+  },
+
+  created() {
+    this.pergunta = this.pergunta = services.getPergunta(this.idx);
   },
 
   methods: {
     perguntaAnterior() {
-      /*  if (this.idx <= 1) {
+      this.moveBarra();
+      if (this.idx <= 1) {
         this.visivelAnterior = false;
-      } */
+      }
       if (this.idx > 0) {
         this.idx--;
+        this.visivelProximo = true;
+        this.visivelResultado = false;
       }
-      this.moveBarra();
-
       this.pergunta = services.getPergunta(this.idx);
     },
     perguntaProxima() {
       this.moveBarra();
+      if (this.idx >= services.getTamanhoLista() - 1) {
+        this.visivelProximo = false;
+        this.visivelResultado = true;
+      }
       if (this.idx < services.getTamanhoLista() - 1) {
+        services.salvaResposta(this.resposta, this.idx);
         this.idx++;
         this.pergunta = services.getPergunta(this.idx);
+        this.visivelAnterior = true;
       }
     },
     moveBarra() {
