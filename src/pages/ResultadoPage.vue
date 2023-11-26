@@ -59,7 +59,7 @@ export default {
 
   data() {
     return {
-      resultado: [],
+      resultado: 0,
       resultadoDepressao: "",
       resultadoAnsiedade: "",
       resultadoEstresse: "",
