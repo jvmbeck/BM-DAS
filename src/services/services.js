@@ -35,55 +35,53 @@ const services = {
   },
 
   calculaResposta(array) {
-    let resultado = 0;
+    var resultado = 0;
     for (let i = 0; i < array.length; i++) {
       resultado = resultado + array[i];
     }
-
+    console.log(resultado);
     return resultado
   },
-  calculaDepressao(array) {
+  calculaDepressao(val) {
     let pontuacao = ''
-    let resultado = this.calculaResposta(array)
-    if (resultado < 4) {
+    if (val <= 4) {
       pontuacao = 'Normal'
-    } else if (resultado < 6) {
+    } else if (val <= 6) {
       pontuacao = 'Leve'
-    } else if (resultado < 10) {
+    } else if (val <= 10) {
       pontuacao = 'Moderado'
-    } else if (resultado < 13) {
+    } else if (val <= 13) {
       pontuacao = 'Forte'
     } else {
       pontuacao = 'Extremamente grave'
     }
     return pontuacao
   },
-  calculaAnsiedade(array) {
+  calculaAnsiedade(val) {
     let pontuacao = ''
-    let resultado = this.calculaResposta(array)
-    if (resultado < 3) {
+    if (val <= 3) {
       pontuacao = 'Normal'
-    } else if (resultado < 5) {
+    } else if (val <= 5) {
       pontuacao = 'Leve'
-    } else if (resultado < 7) {
+    } else if (val <= 7) {
       pontuacao = 'Moderado'
-    } else if (resultado < 9) {
+    } else if (val <= 9) {
       pontuacao = 'Forte'
     } else {
       pontuacao = 'Extremamente grave'
     }
     return pontuacao
   },
-  calculaEstresse(array) {
+  calculaEstresse(val) {
     let pontuacao = ''
-    let resultado = this.calculaResposta(array)
-    if (resultado < 7) {
+
+    if (val <= 7) {
       pontuacao = 'Normal'
-    } else if (resultado < 9) {
+    } else if (val <= 9) {
       pontuacao = 'Leve'
-    } else if (resultado < 12) {
+    } else if (val <= 12) {
       pontuacao = 'Moderado'
-    } else if (resultado < 16) {
+    } else if (val <= 16) {
       pontuacao = 'Forte'
     } else {
       pontuacao = 'Extremamente grave'

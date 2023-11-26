@@ -23,7 +23,7 @@
         <tr>
           <td class="text-left">Leve</td>
           <td class="text-right">5 -> 6</td>
-          <td class="text-right">5 -> 5</td>
+          <td class="text-right">4 -> 5</td>
           <td class="text-right">8 -> 9</td>
         </tr>
         <tr>

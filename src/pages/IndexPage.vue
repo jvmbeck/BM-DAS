@@ -9,28 +9,22 @@
       <br />
       <h1>Drive Life</h1>
       <br />
-      <q-btn label="Iniciar" to="/iniciar" @click="teste"></q-btn>
-      <q-btn label="Teste" @click="teste"></q-btn>
+      <q-btn label="Iniciar" to="/iniciar"></q-btn>
     </div>
   </q-page>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-import services from "../services/services";
 import firebaseServices from "../services/firebaseServices";
 
 export default defineComponent({
   name: "IndexPage",
 
-  created() {},
-
-  methods: {
-    teste() {
-      console.log(services.getData());
-      firebaseServices.getPerguntas();
-      //firebaseServices.salvaRespostaNoBanco(2)
-    },
+  created() {
+    firebaseServices.getPerguntas();
   },
+
+  methods: {},
 });
 </script>

@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 
 export const useAppStore = defineStore('appStore', {
-  state: () => ({ respostas: [], perguntas: [] }),
+  state: () => ({ perguntas: [], respostas: [] }),
 
 })
 

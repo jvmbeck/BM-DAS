@@ -11,7 +11,7 @@
         <q-separator dark inset />
 
         <q-card-section>
-          {{ resultado }}
+          {{ resultadoDepressao }}
         </q-card-section>
       </q-card>
       <q-card dark bordered class="bg-grey-9 card-resultado">
@@ -23,7 +23,7 @@
         <q-separator dark inset />
 
         <q-card-section>
-          {{ resultado }}
+          {{ resultadoAnsiedade }}
         </q-card-section>
       </q-card>
       <q-card dark bordered class="bg-grey-9 card-resultado">
@@ -35,7 +35,7 @@
         <q-separator dark inset />
 
         <q-card-section>
-          {{ resultado }}
+          {{ resultadoEstresse }}
         </q-card-section>
       </q-card>
     </div></q-page
@@ -44,6 +44,8 @@
 
 <script>
 import TabelaPontuacao from "src/components/TabelaPontuacao.vue";
+import services from "src/services/services";
+import { appStore } from "src/stores/appStore";
 
 export default {
   name: "ResultadoPage",
@@ -54,8 +56,18 @@ export default {
 
   data() {
     return {
-      resultado: "Resultado",
+      resultado: [],
+      resultadoDepressao: "",
+      resultadoAnsiedade: "",
+      resultadoEstresse: "",
     };
+  },
+
+  created() {
+    this.resultado = services.calculaResposta(appStore.respostas);
+    this.resultadoDepressao = services.calculaDepressao(this.resultado);
+    this.resultadoAnsiedade = services.calculaAnsiedade(this.resultado);
+    this.resultadoEstresse = services.calculaEstresse(this.resultado);
   },
 };
 </script>
