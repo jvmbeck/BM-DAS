@@ -34,12 +34,11 @@ const services = {
     return appStore.perguntas[0].length
   },
 
-  calculaResposta(array) {
+  calculaResposta() {
     var resultado = 0;
-    for (let i = 0; i < array.length; i++) {
-      resultado = resultado + array[i];
+    for (let i = 0; i < appStore.respostas.length; i++) {
+      resultado = resultado + appStore.respostas[i];
     }
-    console.log(resultado);
     return resultado
   },
   calculaDepressao(val) {

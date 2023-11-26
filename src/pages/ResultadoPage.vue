@@ -1,6 +1,9 @@
 <template>
   <q-page class="flex flex-center fundo" style="background-color: bisque">
     <TabelaPontuacao></TabelaPontuacao>
+
+    <h5>Seu resultado: {{ resultado }}</h5>
+
     <div class="resultados">
       <q-card dark bordered class="bg-grey-9 card-resultado">
         <q-card-section>
@@ -64,7 +67,7 @@ export default {
   },
 
   created() {
-    this.resultado = services.calculaResposta(appStore.respostas);
+    this.resultado = services.calculaResposta();
     this.resultadoDepressao = services.calculaDepressao(this.resultado);
     this.resultadoAnsiedade = services.calculaAnsiedade(this.resultado);
     this.resultadoEstresse = services.calculaEstresse(this.resultado);
@@ -80,7 +83,6 @@ export default {
 .resultados {
   display: flex;
   flex-direction: row;
-  padding: 5%;
   justify-content: space-between;
 }
 
