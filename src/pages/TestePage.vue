@@ -1,69 +1,20 @@
 <template>
-  <q-page class="fundo flex flex-center">
-    <q-card class="my-card">
-      <q-card-section>
-        <div class="text-h6">{{ pergunta }}</div>
-        <div class="q-gutter-sm">
-          <q-radio
-            keep-color
-            v-model="resposta"
-            val="0"
-            label="Teal"
-            color="teal"
-          />
-          <q-radio
-            keep-color
-            v-model="resposta"
-            val="1"
-            label="Orange"
-            color="orange"
-          />
-          <q-radio
-            keep-color
-            v-model="resposta"
-            val="2"
-            label="Red"
-            color="red"
-          />
-          <q-radio
-            keep-color
-            v-model="resposta"
-            val="3"
-            label="Cyan"
-            color="cyan"
-          />
-        </div>
-        <div class="q-px-sm q-mt-sm">
-          Your selection is: <strong>{{ resposta }}</strong>
-        </div>
-      </q-card-section>
-    </q-card>
+  <q-page
+    id="divFundo"
+    class="fundo flex flex-center"
+    style="transition: background-color 1s"
+  >
+    <EscalaRadio :pergunta="pergunta" @selecionado="selecionado"></EscalaRadio>
 
-    <q-card class="my-card">
-      <q-card-section>
-        <div class="text-h6">{{ pergunta }}</div>
-        <div class="q-pa-md">
-          <q-rating
-            v-model="resposta"
-            size="4.5em"
-            icon="img:https://cdn.quasar.dev/logo-v2/svg/logo.svg"
-          />
-        </div>
-        <div class="q-px-sm q-mt-sm">
-          Your selection is: <strong>{{ resposta }}</strong>
-        </div>
-      </q-card-section>
-    </q-card>
+    <EscalaCheckbox
+      :pergunta="pergunta"
+      @selecionado="selecionado"
+    ></EscalaCheckbox>
 
-    <q-card class="my-card">
-      <q-card-section>
-        <div class="text-h6">{{ pergunta }}</div>
-        <q-slider v-model="resposta" marker-labels :min="0" :max="3" />
-        <div class="q-px-sm q-mt-sm">
-          Your selection is: <strong>{{ resposta }}</strong>
-        </div>
-      </q-card-section>
-    </q-card>
+    <EscalaSlider
+      :pergunta="pergunta"
+      @selecionado="selecionado"
+    ></EscalaSlider>
 
     <div class="perguntas">
       <q-btn
@@ -102,12 +53,19 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import services from "../services/services";
+import EscalaSlider from "src/components/EscalaSlider.vue";
+import EscalaCheckbox from "src/components/EscalaCheckbox.vue";
+import EscalaRadio from "src/components/EscalaRadio.vue";
 
 export default {
   name: "TestePage",
 
+  components: {
+    EscalaSlider,
+    EscalaCheckbox,
+    EscalaRadio,
+  },
   data() {
     return {
       visivelAnterior: false,
@@ -148,26 +106,83 @@ export default {
         this.idx++;
         this.pergunta = services.getPergunta(this.idx);
         this.visivelAnterior = true;
+        this.limpaTela();
       }
     },
     moveBarra() {
       var tamPercent = 100 / services.getTamanhoLista();
       this.valorBarra = Math.ceil(tamPercent * (this.idx + 1));
     },
+    selecionado(valor) {
+      switch (valor) {
+        case 0:
+          document.getElementById("divFundo").style.backgroundColor =
+            "LimeGreen";
+
+          break;
+        case 1:
+          document.getElementById("divFundo").style.backgroundColor =
+            "LightGreen";
+
+          break;
+
+        case 2:
+          document.getElementById("divFundo").style.backgroundColor = "Khaki";
+
+          break;
+
+        case 3:
+          document.getElementById("divFundo").style.backgroundColor =
+            "SandyBrown";
+
+          break;
+        default:
+          document.getElementById("divFundo").style.backgroundColor =
+            "Lightgray";
+
+          break;
+      }
+    },
+    limpaTela() {
+      document.getElementById("divFundo").style.backgroundColor = "SeaShell";
+      this.resposta = 0;
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .fundo {
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
 }
 
+.my-card {
+  width: 100%;
+  min-width: 500px;
+  max-width: 700px;
+}
 .perguntas {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+}
+
+.escala-resposta {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.escala-esq {
+  color: green;
+  margin-right: 5%;
+}
+
+.escala-dir {
+  color: red;
+  margin-left: 5%;
 }
 </style>
