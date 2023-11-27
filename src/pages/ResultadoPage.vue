@@ -47,6 +47,7 @@
 
 <script>
 import TabelaPontuacao from "src/components/TabelaPontuacao.vue";
+import firebaseServices from "src/services/firebaseServices";
 import services from "src/services/services";
 import { appStore } from "src/stores/appStore";
 
@@ -71,6 +72,7 @@ export default {
     this.resultadoDepressao = services.calculaDepressao(this.resultado);
     this.resultadoAnsiedade = services.calculaAnsiedade(this.resultado);
     this.resultadoEstresse = services.calculaEstresse(this.resultado);
+    firebaseServices.salvaRespostaNoBanco(this.resultado);
   },
 };
 </script>
