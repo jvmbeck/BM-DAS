@@ -102,18 +102,19 @@ export default {
         this.visivelResultado = true;
       }
       if (this.idx < services.getTamanhoLista() - 1) {
-        services.salvaResposta(this.resposta, this.idx);
         this.idx++;
         this.pergunta = services.getPergunta(this.idx);
         this.visivelAnterior = true;
         this.limpaTela();
       }
+      services.salvaResposta(this.resposta, this.idx);
     },
     moveBarra() {
       var tamPercent = 100 / services.getTamanhoLista();
       this.valorBarra = Math.ceil(tamPercent * (this.idx + 1));
     },
     selecionado(valor) {
+      services.salvaResposta(valor, this.idx);
       switch (valor) {
         case 0:
           document.getElementById("divFundo").style.backgroundColor =
