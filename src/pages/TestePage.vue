@@ -24,6 +24,7 @@
         @click="perguntaAnterior"
       ></q-btn>
       <q-btn
+        id="btnProximo"
         class="on-right"
         label="próxima"
         v-show="visivelProximo"
@@ -105,6 +106,7 @@ export default {
         this.idx++;
         this.pergunta = services.getPergunta(this.idx);
         this.visivelAnterior = true;
+        document.getElementById("btnProximo").disabled = true;
       }
       services.salvaResposta(this.resposta, this.idx);
       this.limpaTela();
@@ -115,6 +117,8 @@ export default {
     },
     selecionado(valor) {
       services.salvaResposta(valor, this.idx);
+      document.getElementById("btnProximo").disabled = false;
+
       switch (valor) {
         case 0:
           document.getElementById("divFundo").style.backgroundColor =
