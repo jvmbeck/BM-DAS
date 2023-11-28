@@ -1,5 +1,5 @@
 import { dbRef, respostaRef, database, perguntasRef } from "../key/configKey";
-import { child, get, onValue, push, ref } from "firebase/database";
+import { child, get, set, onValue, push, ref } from "firebase/database";
 import { appStore } from "..//stores/appStore";
 import services from "./services";
 
@@ -30,28 +30,21 @@ const firebaseServices = {
  */
   },
 
-  salvaRespostaNoBanco(resultado) {
-    if (localStorage.getItem("id") != null) {
-      push(respostaRef, {
-        resposta: resultado,
-        data: services.getData(),
-      })
-        .then((resposta) => {
-          console.log(resposta.key);
-          localStorage.setItem("id", resposta.key);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-      const idUsuario = localStorage.getItem("id");
-      console.log(idUsuario);
-      const userRef = respostaRef.child(idUsuario);
-      userRef.set({
-        resposta: resultado,
-        data: services.getData(),
-      });
+  async salvaRespostaNoBanco(resultado) {
+    if (localStorage.getItem("id") == null) {
+      const resposta = await push(respostaRef, "oi")
+      localStorage.setItem("id", resposta.key);
     }
+    const idUsuario = localStorage.getItem("id");
+    console.log(idUsuario);
+    const userRef = ref(database, '/resultados/' + idUsuario + "/" + services.getData());
+
+    set(userRef, {
+      resposta: resultado,
+      data: services.getData(),
+    });
+
+
 
     /* console.log(newPostRef);
         const postId = newPostRef.key;

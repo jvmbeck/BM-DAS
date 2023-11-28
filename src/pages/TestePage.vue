@@ -105,9 +105,9 @@ export default {
         this.idx++;
         this.pergunta = services.getPergunta(this.idx);
         this.visivelAnterior = true;
-        this.limpaTela();
       }
       services.salvaResposta(this.resposta, this.idx);
+      this.limpaTela();
     },
     moveBarra() {
       var tamPercent = 100 / services.getTamanhoLista();

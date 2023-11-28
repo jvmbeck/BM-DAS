@@ -34,6 +34,13 @@ export default {
     valor: { type: Number, required: false },
     pergunta: String,
   },
+  watch: {
+    pergunta(val, oldVal) {
+      if (val != oldVal) {
+        this.resposta = null;
+      }
+    },
+  },
   data() {
     return {
       resposta: 0,
