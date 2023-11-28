@@ -30,6 +30,19 @@ const firebaseServices = {
  */
   },
 
+  getResposta() {
+    const idUsuario = localStorage.getItem("id");
+    const referenciaResposta = ref(database, '/resultados/' + idUsuario + "/" + services.getData());
+    onValue(referenciaResposta, (snapshot) => {
+      if (snapshot.exists()) {
+        console.log("Respondeu hoje");
+      } else {
+        console.log("Não respondeu hoje");
+
+      }
+    });
+  },
+
   async criaUsuario() {
     if (localStorage.getItem("id") == null) {
       const resposta = await push(respostaRef, "chave")

@@ -31,6 +31,7 @@ export default defineComponent({
     if (localStorage.getItem("id")) {
       this.existeID = true;
     }
+    firebaseServices.getResposta();
   },
   data() {
     return {
