@@ -42,8 +42,13 @@
 </template>
 
 <script>
+import firebaseServices from "src/services/firebaseServices";
+
 export default {
   name: "IniciarPage",
+  created() {
+    firebaseServices.criaUsuario();
+  },
   data() {
     return {
       concordo: false,

@@ -30,18 +30,21 @@ const firebaseServices = {
  */
   },
 
-  async salvaRespostaNoBanco(resultado) {
+  async criaUsuario() {
     if (localStorage.getItem("id") == null) {
-      const resposta = await push(respostaRef, "oi")
+      const resposta = await push(respostaRef, "chave")
       localStorage.setItem("id", resposta.key);
+      console.log("Criou usuario: " + resposta.key);
     }
+  },
+
+  async salvaRespostaNoBanco(resultado) {
+
     const idUsuario = localStorage.getItem("id");
-    console.log(idUsuario);
     const userRef = ref(database, '/resultados/' + idUsuario + "/" + services.getData());
 
     set(userRef, {
       resposta: resultado,
-      data: services.getData(),
     });
 
 
