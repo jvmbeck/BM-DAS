@@ -4,15 +4,8 @@
       <div class="text-h6 flex flex-center">{{ pergunta }}</div>
       <div class="q-pa-md escala-resposta">
         <h4 class="escala-esq">Pouco</h4>
-        <q-rating
-          v-model="resposta"
-          :max="4"
-          size="4.5em"
-          color="grey"
-          :color-selected="cores"
-          :icon="icons"
-          @update:model-value="selecionado"
-        />
+        <q-rating v-model="resposta" :max="4" size="5.5em" color="grey" :color-selected="cores" :icon="icons"
+          @update:model-value="selecionado" />
         <h4 class="escala-dir">Muito</h4>
       </div>
     </q-card-section>
@@ -88,6 +81,12 @@ export default {
 </script>
 
 <style scoped>
+.my-card {
+  width: 100%;
+  min-width: 500px;
+  max-width: 700px;
+}
+
 .escala-resposta {
   display: flex;
   flex-direction: row;

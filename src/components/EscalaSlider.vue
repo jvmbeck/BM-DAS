@@ -7,9 +7,8 @@
 
         <q-slider
           v-model="resposta"
-          marker-labels
-          :min="0"
-          :max="3"
+          :min="1"
+          :max="4"
           selection-color="green"
           track-size="12px"
           thumb-size="30px"
@@ -17,9 +16,6 @@
         />
 
         <h4 class="escala-dir">Muito</h4>
-      </div>
-      <div class="q-px-sm q-mt-sm">
-        Resposta selecionada: <strong>{{ resposta }}</strong>
       </div>
     </q-card-section>
   </q-card>

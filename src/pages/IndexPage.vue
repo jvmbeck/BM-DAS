@@ -19,7 +19,6 @@
 <script>
 import { defineComponent } from "vue";
 import firebaseServices from "../services/firebaseServices";
-import { push } from "firebase/database";
 import { useQuasar } from "quasar";
 
 export default defineComponent({

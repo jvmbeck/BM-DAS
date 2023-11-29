@@ -9,10 +9,7 @@
       @selecionado="selecionado"
     ></EscalaRostos>
 
-    <EscalaCheckbox
-      :pergunta="pergunta"
-      @selecionado="selecionado"
-    ></EscalaCheckbox>
+    <EscalaRadio :pergunta="pergunta" @selecionado="selecionado"></EscalaRadio>
 
     <EscalaSlider
       :pergunta="pergunta"
@@ -61,14 +58,16 @@ import services from "../services/services";
 import EscalaSlider from "src/components/EscalaSlider.vue";
 import EscalaCheckbox from "src/components/EscalaCheckbox.vue";
 import EscalaRostos from "src/components/EscalaRostos.vue";
+import EscalaRadio from "src/components/EscalaRadio.vue";
 
 export default {
   name: "TestePage",
 
   components: {
     EscalaSlider,
-    EscalaCheckbox,
+    //EscalaCheckbox,
     EscalaRostos,
+    EscalaRadio,
   },
   data() {
     return {
