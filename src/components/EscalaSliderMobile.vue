@@ -13,6 +13,7 @@
           track-size="12px"
           thumb-size="30px"
           vertical
+          reverse
           @change="selecionado(resposta)"
         />
 
@@ -85,7 +86,7 @@ export default {
   }
 
   .escala-resposta {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
   }
 }

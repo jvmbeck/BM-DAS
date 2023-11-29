@@ -5,16 +5,40 @@
       <div class="q-pa-md escala-resposta">
         <h4 class="escala-esq">Pouco</h4>
 
-        <q-radio keep-color size="xl" v-model="resposta" :val=1 color="green"
-          @update:model-value="selecionado(resposta)" />
-        <q-radio keep-color size="xl" v-model="resposta" :val=2 color="light-green-5"
-          @update:model-value="selecionado(resposta)" />
-        <q-radio keep-color size="xl" v-model="resposta" :val=3 color="yellow"
-          @update:model-value="selecionado(resposta)" />
-        <q-radio keep-color size="xl" v-model="resposta" :val=4 color="red" @update:model-value="selecionado(resposta)" />
+        <q-radio
+          keep-color
+          size="xl"
+          v-model="resposta"
+          :val="1"
+          color="green"
+          @update:model-value="selecionado(resposta)"
+        />
+        <q-radio
+          keep-color
+          size="xl"
+          v-model="resposta"
+          :val="2"
+          color="light-green-5"
+          @update:model-value="selecionado(resposta)"
+        />
+        <q-radio
+          keep-color
+          size="xl"
+          v-model="resposta"
+          :val="3"
+          color="yellow"
+          @update:model-value="selecionado(resposta)"
+        />
+        <q-radio
+          keep-color
+          size="xl"
+          v-model="resposta"
+          :val="4"
+          color="red"
+          @update:model-value="selecionado(resposta)"
+        />
         <h4 class="escala-dir">Muito</h4>
       </div>
-
     </q-card-section>
   </q-card>
 </template>
@@ -78,19 +102,15 @@ export default {
 }
 
 @media (max-width: 1200px) {
-
   .my-card {
     width: 80%;
     min-width: 300px;
     max-width: 300px;
-
   }
 
   .escala-resposta {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
-
   }
-
 }
 </style>
