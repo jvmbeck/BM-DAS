@@ -2,16 +2,24 @@
   <q-page class="flex flex-center">
     <div style="text-align: center">
       <h2 v-show="existeID">Bem vindo de volta</h2>
-      <img
-        alt="Quasar logo"
-        src="~assets/logo-driver-life.svg"
-        style="width: 200px; height: 200px"
-      />
+      <img alt="Quasar logo" src="~assets/logo-driver-life.svg" class="logo" />
       <br />
-      <h1>Drive Life</h1>
+      <div class="text-h2 titulo">Drive Life</div>
       <br />
-      <q-btn id="btnIniciar" label="Iniciar" @click="btnIniciar"></q-btn>
-      <q-btn id="btnTeste" label="Teste" to="/teste"></q-btn>
+      <q-btn
+        id="btnIniciar"
+        label="Iniciar"
+        @click="btnIniciar"
+        rounded
+        size="35px"
+      ></q-btn>
+      <q-btn
+        id="btnTeste"
+        label="Teste"
+        to="/teste"
+        rounded
+        size="35px"
+      ></q-btn>
     </div>
   </q-page>
 </template>
@@ -63,3 +71,18 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.logo {
+  height: 200px;
+  width: 200px;
+}
+
+.titulo {
+  padding-top: 6%;
+  padding-bottom: 6%;
+}
+
+.botao {
+}
+</style>

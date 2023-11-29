@@ -1,30 +1,18 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page class="flex-center flex">
     <q-card class="card q-pa-sm">
       <q-card-section>
-        <div class="text-h6">Termos de Uso</div>
-        <div class="text-subtitle2">by John Doe</div>
+        <div class="text-h3 text-center">Termos de Uso</div>
       </q-card-section>
+      <q-separator />
 
       <q-card-section class="q-pt-none">
-        <p>
-          Contrary to popular belief, Lorem Ipsum is not simply random text. It
-          has roots in a piece of classical Latin literature from 45 BC, making
-          it over 2000 years old. Richard McClintock, a Latin professor at
-          Hampden-Sydney College in Virginia, looked up one of the more obscure
-          Latin words, consectetur, from a Lorem Ipsum passage, and going
-          through the cites of the word in classical literature, discovered the
-          undoubtable source. Lorem Ipsum comes from sections 1.10.32 and
-          1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and
-          Evil) by Cicero, written in 45 BC. This book is a treatise on the
-          theory of ethics, very popular during the Renaissance. The first line
-          of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in
-          section 1.10.32. The standard chunk of Lorem Ipsum used since the
-          1500s is reproduced below for those interested. Sections 1.10.32 and
-          1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also
-          reproduced in their exact original form, accompanied by English
-          versions from the 1914 translation by H. Rackham.
-        </p>
+        <q-scroll-area class="text-center" style="height: 300px">
+          <div v-for="n in 100" :key="n" class="q-py-xs">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </div>
+        </q-scroll-area>
       </q-card-section>
       <q-separator />
       <q-card-action>
@@ -46,6 +34,7 @@ import firebaseServices from "src/services/firebaseServices";
 
 export default {
   name: "IniciarPage",
+
   created() {
     firebaseServices.criaUsuario();
   },
@@ -57,9 +46,20 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.fundo {
+  display: flex;
+  align-items: center;
+}
 .card {
   width: 90%;
+  max-width: 1000px;
   height: 90%;
+  max-height: 1200px;
+}
+
+.contrato {
+  display: flex;
+  align-items: center;
 }
 </style>
