@@ -1,44 +1,43 @@
 <template>
   <q-page class="flex flex-center fundo" style="background-color: bisque">
-    <TabelaPontuacao></TabelaPontuacao>
+    <h5 class="text-h4">Resultados</h5>
 
-    <h5>Seu resultado: {{ resultado }}</h5>
+    <TabelaPontuacao v-show="desktop"></TabelaPontuacao>
+
+    <h5></h5>
 
     <div class="resultados">
       <q-card dark bordered class="bg-grey-9 card-resultado">
         <q-card-section>
-          <div class="text-h6">Depressão</div>
-          <div class="text-subtitle2"></div>
+          <div class="text-subtitle2">Depressão</div>
         </q-card-section>
 
         <q-separator dark inset />
 
         <q-card-section>
-          {{ resultadoDepressao }}
+          <div class="text-h4">{{ resultadoDepressao }}</div>
         </q-card-section>
       </q-card>
       <q-card dark bordered class="bg-grey-9 card-resultado">
         <q-card-section>
-          <div class="text-h6">Ansiedade</div>
-          <div class="text-subtitle2"></div>
+          <div class="text-subtitle2">Ansiedade</div>
         </q-card-section>
 
         <q-separator dark inset />
 
         <q-card-section>
-          {{ resultadoAnsiedade }}
+          <div class="text-h4">{{ resultadoAnsiedade }}</div>
         </q-card-section>
       </q-card>
       <q-card dark bordered class="bg-grey-9 card-resultado">
         <q-card-section>
-          <div class="text-h6">Estresse</div>
-          <div class="text-subtitle2"></div>
+          <div class="text-subtitle2">Estresse</div>
         </q-card-section>
 
         <q-separator dark inset />
 
         <q-card-section>
-          {{ resultadoEstresse }}
+          <div class="text-h4">{{ resultadoEstresse }}</div>
         </q-card-section>
       </q-card>
     </div></q-page
@@ -49,7 +48,6 @@
 import TabelaPontuacao from "src/components/TabelaPontuacao.vue";
 import firebaseServices from "src/services/firebaseServices";
 import services from "src/services/services";
-import { appStore } from "src/stores/appStore";
 
 export default {
   name: "ResultadoPage",
@@ -64,10 +62,14 @@ export default {
       resultadoDepressao: "",
       resultadoAnsiedade: "",
       resultadoEstresse: "",
+      desktop: true,
     };
   },
 
   created() {
+    if (window.innerWidth < 1200) {
+      this.desktop = false;
+    }
     this.resultado = services.calculaResposta();
     this.resultadoDepressao = services.calculaDepressao(this.resultado);
     this.resultadoAnsiedade = services.calculaAnsiedade(this.resultado);
@@ -92,5 +94,11 @@ export default {
   width: 100%;
   min-width: 300px;
   text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .resultados {
+    flex-direction: column;
+  }
 }
 </style>

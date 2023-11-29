@@ -5,8 +5,17 @@
       <div class="escala-resposta">
         <h4 class="escala-esq">Pouco</h4>
 
-        <q-slider v-model="resposta" :min="1" :max="4" selection-color="green" track-size="12px" thumb-size="30px"
-          @change="selecionado(resposta)" />
+        <q-slider
+          v-model="resposta"
+          :min="1"
+          :max="4"
+          selection-color="green"
+          track-size="12px"
+          thumb-size="30px"
+          vertical
+          reverse
+          @change="selecionado(resposta)"
+        />
 
         <h4 class="escala-dir">Muito</h4>
       </div>
@@ -16,11 +25,10 @@
 
 <script>
 export default {
-  name: "EscalaSlider",
+  name: "EscalaSliderMobile",
 
   emits: ["selecionado"],
   props: {
-    valor: { type: Number, required: false },
     pergunta: String,
   },
   watch: {
@@ -71,19 +79,15 @@ export default {
 }
 
 @media (max-width: 1200px) {
-
   .my-card {
     width: 80%;
     min-width: 300px;
     max-width: 300px;
-
   }
 
   .escala-resposta {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
-
   }
-
 }
 </style>
