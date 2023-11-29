@@ -4,12 +4,12 @@
     class="fundo flex flex-center"
     style="transition: background-color 1s"
   >
-    <EscalaRadio :pergunta="pergunta" @selecionado="selecionado"></EscalaRadio>
-
-    <EscalaCheckbox
+    <EscalaRostos
       :pergunta="pergunta"
       @selecionado="selecionado"
-    ></EscalaCheckbox>
+    ></EscalaRostos>
+
+    <EscalaRadio :pergunta="pergunta" @selecionado="selecionado"></EscalaRadio>
 
     <EscalaSlider
       :pergunta="pergunta"
@@ -24,6 +24,7 @@
         @click="perguntaAnterior"
       ></q-btn>
       <q-btn
+        id="btnProximo"
         class="on-right"
         label="próxima"
         v-show="visivelProximo"
@@ -56,6 +57,7 @@
 import services from "../services/services";
 import EscalaSlider from "src/components/EscalaSlider.vue";
 import EscalaCheckbox from "src/components/EscalaCheckbox.vue";
+import EscalaRostos from "src/components/EscalaRostos.vue";
 import EscalaRadio from "src/components/EscalaRadio.vue";
 
 export default {
@@ -63,7 +65,8 @@ export default {
 
   components: {
     EscalaSlider,
-    EscalaCheckbox,
+    //EscalaCheckbox,
+    EscalaRostos,
     EscalaRadio,
   },
   data() {
@@ -105,9 +108,10 @@ export default {
         this.idx++;
         this.pergunta = services.getPergunta(this.idx);
         this.visivelAnterior = true;
-        this.limpaTela();
+        document.getElementById("btnProximo").disabled = true;
       }
       services.salvaResposta(this.resposta, this.idx);
+      this.limpaTela();
     },
     moveBarra() {
       var tamPercent = 100 / services.getTamanhoLista();
@@ -115,24 +119,26 @@ export default {
     },
     selecionado(valor) {
       services.salvaResposta(valor, this.idx);
+      document.getElementById("btnProximo").disabled = false;
+
       switch (valor) {
-        case 0:
+        case 1:
           document.getElementById("divFundo").style.backgroundColor =
             "LimeGreen";
 
           break;
-        case 1:
+        case 2:
           document.getElementById("divFundo").style.backgroundColor =
             "LightGreen";
 
           break;
 
-        case 2:
+        case 3:
           document.getElementById("divFundo").style.backgroundColor = "Khaki";
 
           break;
 
-        case 3:
+        case 4:
           document.getElementById("divFundo").style.backgroundColor =
             "SandyBrown";
 

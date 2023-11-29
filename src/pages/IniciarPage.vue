@@ -35,15 +35,20 @@
           />
         </div>
 
-        <q-btn label="Continuar" :disabled="!concordo" to="/teste"></q-btn>
+        <q-btn label="Continuar" :disable="!concordo" to="/teste"></q-btn>
       </q-card-action>
     </q-card>
   </q-page>
 </template>
 
 <script>
+import firebaseServices from "src/services/firebaseServices";
+
 export default {
   name: "IniciarPage",
+  created() {
+    firebaseServices.criaUsuario();
+  },
   data() {
     return {
       concordo: false,

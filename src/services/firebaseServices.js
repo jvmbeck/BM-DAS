@@ -1,5 +1,5 @@
 import { dbRef, respostaRef, database, perguntasRef } from "../key/configKey";
-import { child, get, onValue, push, ref } from "firebase/database";
+import { child, get, set, onValue, push, ref } from "firebase/database";
 import { appStore } from "..//stores/appStore";
 import services from "./services";
 
@@ -30,32 +30,40 @@ const firebaseServices = {
  */
   },
 
-  salvaRespostaNoBanco(resultado) {
-    if (localStorage.getItem("id") != null) {
-      push(respostaRef, {
-        resposta: resultado,
-        data: services.getData(),
-      })
-        .then((resposta) => {
-          console.log(resposta.key);
-          localStorage.setItem("id", resposta.key);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-      const idUsuario = localStorage.getItem("id");
-      console.log(idUsuario);
-      const userRef = respostaRef.child(idUsuario);
-      userRef.set({
-        resposta: resultado,
-        data: services.getData(),
-      });
-    }
+  getRespostaHoje() {
+    var existe = false;
+    const idUsuario = localStorage.getItem("id");
+    const referenciaResposta = ref(database, '/resultados/' + idUsuario + "/" + services.getData() + "/");
+    onValue(referenciaResposta, (snapshot) => {
+      if (snapshot.exists()) {
+        console.log("Respondeu hoje");
+        existe = true;
+      } else {
+        console.log("Não respondeu hoje");
+        existe = false;
+      }
+    });
+    return existe;
 
-    /* console.log(newPostRef);
-        const postId = newPostRef.key;
-        localStorage.setItem("id", postId) */
+  },
+
+  async criaUsuario() {
+    if (localStorage.getItem("id") == null) {
+      const resposta = await push(respostaRef, "chave")
+      localStorage.setItem("id", resposta.key);
+      console.log("Criou usuario: " + resposta.key);
+    }
+  },
+
+  async salvaRespostaNoBanco(resultado) {
+
+    const idUsuario = localStorage.getItem("id");
+    const userRef = ref(database, '/resultados/' + idUsuario + "/" + services.getData());
+
+    set(userRef, {
+      resposta: resultado,
+    });
+
   },
 };
 
