@@ -4,7 +4,10 @@
     class="fundo flex flex-center"
     style="transition: background-color 1s"
   >
-    <EscalaRadio :pergunta="pergunta" @selecionado="selecionado"></EscalaRadio>
+    <EscalaRostos
+      :pergunta="pergunta"
+      @selecionado="selecionado"
+    ></EscalaRostos>
 
     <EscalaCheckbox
       :pergunta="pergunta"
@@ -57,7 +60,7 @@
 import services from "../services/services";
 import EscalaSlider from "src/components/EscalaSlider.vue";
 import EscalaCheckbox from "src/components/EscalaCheckbox.vue";
-import EscalaRadio from "src/components/EscalaRadio.vue";
+import EscalaRostos from "src/components/EscalaRostos.vue";
 
 export default {
   name: "TestePage",
@@ -65,7 +68,7 @@ export default {
   components: {
     EscalaSlider,
     EscalaCheckbox,
-    EscalaRadio,
+    EscalaRostos,
   },
   data() {
     return {
@@ -120,23 +123,23 @@ export default {
       document.getElementById("btnProximo").disabled = false;
 
       switch (valor) {
-        case 0:
+        case 1:
           document.getElementById("divFundo").style.backgroundColor =
             "LimeGreen";
 
           break;
-        case 1:
+        case 2:
           document.getElementById("divFundo").style.backgroundColor =
             "LightGreen";
 
           break;
 
-        case 2:
+        case 3:
           document.getElementById("divFundo").style.backgroundColor = "Khaki";
 
           break;
 
-        case 3:
+        case 4:
           document.getElementById("divFundo").style.backgroundColor =
             "SandyBrown";
 
