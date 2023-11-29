@@ -30,17 +30,21 @@ const firebaseServices = {
  */
   },
 
-  getResposta() {
+  getRespostaHoje() {
+    var existe = false;
     const idUsuario = localStorage.getItem("id");
-    const referenciaResposta = ref(database, '/resultados/' + idUsuario + "/" + services.getData());
+    const referenciaResposta = ref(database, '/resultados/' + idUsuario + "/" + services.getData() + "/");
     onValue(referenciaResposta, (snapshot) => {
       if (snapshot.exists()) {
         console.log("Respondeu hoje");
+        existe = true;
       } else {
         console.log("Não respondeu hoje");
-
+        existe = false;
       }
     });
+    return existe;
+
   },
 
   async criaUsuario() {
@@ -60,11 +64,6 @@ const firebaseServices = {
       resposta: resultado,
     });
 
-
-
-    /* console.log(newPostRef);
-        const postId = newPostRef.key;
-        localStorage.setItem("id", postId) */
   },
 };
 
