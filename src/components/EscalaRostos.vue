@@ -4,8 +4,8 @@
       <div class="text-h6 flex flex-center">{{ pergunta }}</div>
       <div class="q-pa-md escala-resposta">
         <h4 class="escala-esq">Pouco</h4>
-        <q-rating v-model="resposta" :max="4" size="5.5em" color="grey" :color-selected="cores" :icon="icons"
-          @update:model-value="selecionado" />
+        <q-rating class="opcoes" v-model="resposta" :max="4" size="5.5em" color="grey" :color-selected="cores"
+          :icon="icons" @update:model-value="selecionado" />
         <h4 class="escala-dir">Muito</h4>
       </div>
     </q-card-section>
@@ -94,11 +94,35 @@ export default {
   align-items: center;
 }
 
+.opcoes {
+  display: flex;
+  flex-direction: row;
+}
+
 .escala-esq {
   color: green;
 }
 
 .escala-dir {
   color: red;
+}
+
+@media (max-width: 1200px) {
+
+  .my-card {
+    width: 80%;
+    min-width: 300px;
+    max-width: 300px;
+
+  }
+
+  .escala-resposta {
+    flex-direction: column;
+  }
+
+  .opcoes {
+    display: flex;
+    flex-direction: column;
+  }
 }
 </style>

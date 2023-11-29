@@ -1,9 +1,5 @@
 <template>
-  <q-page
-    id="divFundo"
-    class="fundo flex flex-center"
-    style="transition: background-color 1s"
-  >
+  <q-page id="divFundo" class="fundo" style="transition: background-color 1s">
     <EscalaRostos
       :pergunta="pergunta"
       @selecionado="selecionado"
@@ -14,7 +10,14 @@
     <EscalaSlider
       :pergunta="pergunta"
       @selecionado="selecionado"
+      v-show="desktop"
     ></EscalaSlider>
+
+    <EscalaSliderMobile
+      :pergunta="pergunta"
+      @selecionado="selecionado"
+      v-show="!desktop"
+    ></EscalaSliderMobile>
 
     <div class="perguntas">
       <q-btn
@@ -59,12 +62,14 @@ import EscalaSlider from "src/components/EscalaSlider.vue";
 import EscalaCheckbox from "src/components/EscalaCheckbox.vue";
 import EscalaRostos from "src/components/EscalaRostos.vue";
 import EscalaRadio from "src/components/EscalaRadio.vue";
+import EscalaSliderMobile from "src/components/EscalaSliderMobile.vue";
 
 export default {
   name: "TestePage",
 
   components: {
     EscalaSlider,
+    EscalaSliderMobile,
     //EscalaCheckbox,
     EscalaRostos,
     EscalaRadio,
@@ -78,11 +83,15 @@ export default {
       idx: 0,
       valorBarra: 0,
       pergunta: "",
+      desktop: true,
     };
   },
 
   created() {
     this.pergunta = this.pergunta = services.getPergunta(this.idx);
+    if (window.innerWidth < 1000) {
+      this.desktop = false;
+    }
   },
 
   methods: {
@@ -163,33 +172,12 @@ export default {
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
+  align-items: center;
 }
 
-.my-card {
-  width: 100%;
-  min-width: 500px;
-  max-width: 700px;
-}
 .perguntas {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-}
-
-.escala-resposta {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: baseline;
-}
-
-.escala-esq {
-  color: green;
-  margin-right: 5%;
-}
-
-.escala-dir {
-  color: red;
-  margin-left: 5%;
 }
 </style>
