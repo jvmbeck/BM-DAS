@@ -82,7 +82,4 @@ export default defineComponent({
   padding-top: 6%;
   padding-bottom: 6%;
 }
-
-.botao {
-}
 </style>
