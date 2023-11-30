@@ -39,7 +39,7 @@ const services = {
     for (let i = 0; i < appStore.respostas.length; i++) {
       resultado = resultado + appStore.respostas[i];
     }
-    return resultado
+    return Math.floor(resultado / 4)
   },
   calculaDepressao(val) {
     let pontuacao = ''
