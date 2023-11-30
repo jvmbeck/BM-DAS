@@ -13,13 +13,6 @@
         rounded
         size="35px"
       ></q-btn>
-      <q-btn
-        id="btnTeste"
-        label="Teste"
-        to="/teste"
-        rounded
-        size="35px"
-      ></q-btn>
     </div>
   </q-page>
 </template>
