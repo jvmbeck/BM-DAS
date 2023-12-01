@@ -13,6 +13,7 @@
         rounded
         size="35px"
       ></q-btn>
+      {{ result }}
     </div>
   </q-page>
 </template>
@@ -27,6 +28,7 @@ export default defineComponent({
 
   created() {
     this.respondeuHoje = firebaseServices.getRespostaHoje();
+    this.result = firebaseServices.getRespostasAntigas();
 
     const $q = useQuasar();
 
@@ -40,13 +42,13 @@ export default defineComponent({
       existeID: false,
       alert: false,
       respondeuHoje: false,
+      result: [],
     };
   },
 
   methods: {
     btnIniciar() {
       this.respondeuHoje = firebaseServices.getRespostaHoje();
-      console.log(this.respondeuHoje);
       if (this.respondeuHoje) {
         this.$q.notify({
           message: "Você já respondeu o teste hoje. Tente novamente amanhã. :)",
