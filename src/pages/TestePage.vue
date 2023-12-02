@@ -4,7 +4,7 @@
       :pergunta="pergunta"
       @selecionado="selecionado"
     ></EscalaRostos>
-
+    <!-- 
     <EscalaRadio :pergunta="pergunta" @selecionado="selecionado"></EscalaRadio>
 
     <EscalaSlider
@@ -17,9 +17,9 @@
       :pergunta="pergunta"
       @selecionado="selecionado"
       v-show="!desktop"
-    ></EscalaSliderMobile>
+    ></EscalaSliderMobile> -->
 
-    <div class="perguntas">
+    <div class="botoes">
       <q-btn
         class="on-left"
         label="anterior"
@@ -45,7 +45,7 @@
       show-value
       font-size="12px"
       :value="valorBarra"
-      size="50px"
+      size="90px"
       :thickness="0.22"
       color="teal"
       track-color="grey-3"
@@ -58,21 +58,21 @@
 
 <script>
 import services from "../services/services";
-import EscalaSlider from "src/components/EscalaSlider.vue";
+//import EscalaSlider from "src/components/EscalaSlider.vue";
 import EscalaCheckbox from "src/components/EscalaCheckbox.vue";
 import EscalaRostos from "src/components/EscalaRostos.vue";
-import EscalaRadio from "src/components/EscalaRadio.vue";
-import EscalaSliderMobile from "src/components/EscalaSliderMobile.vue";
+//import EscalaRadio from "src/components/EscalaRadio.vue";
+//import EscalaSliderMobile from "src/components/EscalaSliderMobile.vue";
 
 export default {
   name: "TestePage",
 
   components: {
-    EscalaSlider,
-    EscalaSliderMobile,
+    //EscalaSlider,
+    //EscalaSliderMobile,
     //EscalaCheckbox,
     EscalaRostos,
-    EscalaRadio,
+    //EscalaRadio,
   },
   data() {
     return {
@@ -96,7 +96,6 @@ export default {
 
   methods: {
     perguntaAnterior() {
-      this.moveBarra();
       if (this.idx <= 1) {
         this.visivelAnterior = false;
       }
@@ -106,9 +105,9 @@ export default {
         this.visivelResultado = false;
       }
       this.pergunta = services.getPergunta(this.idx);
+      this.moveBarra();
     },
     perguntaProxima() {
-      this.moveBarra();
       if (this.idx >= services.getTamanhoLista() - 1) {
         this.visivelProximo = false;
         this.visivelResultado = true;
@@ -121,6 +120,7 @@ export default {
       }
       services.salvaResposta(this.resposta, this.idx);
       this.limpaTela();
+      this.moveBarra();
     },
     moveBarra() {
       var tamPercent = 100 / services.getTamanhoLista();
@@ -175,7 +175,7 @@ export default {
   align-items: center;
 }
 
-.perguntas {
+.botoes {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
