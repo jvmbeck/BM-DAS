@@ -21,18 +21,27 @@
 <script>
 import { defineComponent } from "vue";
 import firebaseServices from "../services/firebaseServices";
-import { useQuasar } from "quasar";
+import { useQuasar, QSpinnerPuff } from "quasar";
+import { onBeforeUnmount } from "vue";
 
 export default defineComponent({
   name: "IndexPage",
 
   created() {
+    firebaseServices.getPerguntas();
     this.respondeuHoje = firebaseServices.getRespostaHoje();
     this.result = firebaseServices.getRespostasAntigas();
 
     const $q = useQuasar();
 
-    firebaseServices.getPerguntas();
+    //função da tela de carregamento
+    onBeforeUnmount(() => {
+      if (this.timer !== void 0) {
+        clearTimeout(this.timer);
+        $q.loading.hide();
+      }
+    });
+
     if (localStorage.getItem("id")) {
       this.existeID = true;
     }
@@ -43,6 +52,7 @@ export default defineComponent({
       alert: false,
       respondeuHoje: false,
       result: [],
+      timer: 0,
     };
   },
 
@@ -50,18 +60,41 @@ export default defineComponent({
     btnIniciar() {
       this.respondeuHoje = firebaseServices.getRespostaHoje();
       if (this.respondeuHoje) {
-        this.$q.notify({
-          message: "Você já respondeu o teste hoje. Tente novamente amanhã. :)",
-          color: "purple",
-        });
-        document.getElementById("btnIniciar").disabled = true;
+        this.notif();
       } else {
-        if (localStorage.getItem("id")) {
+        this.loading();
+        if (this.existeID) {
           this.$router.push("/teste");
         } else {
           this.$router.push("/iniciar");
         }
       }
+    },
+
+    notif() {
+      this.$q.notify({
+        message: "Você já respondeu o teste hoje. Tente novamente amanhã. :)",
+        color: "purple",
+      });
+    },
+
+    loading() {
+      this.$q.loading.show({
+        spinner: QSpinnerPuff,
+        spinnerColor: "yellow",
+        spinnerSize: "20em",
+        boxClass: "bg-grey-2 text-grey-9 ",
+        message: "Carregando perguntas",
+        backgroundColor: "blue-grey",
+        messageColor: "black",
+        customClass: "text-subtitle1",
+      });
+
+      // hiding in 3s
+      this.timer = setTimeout(() => {
+        this.$q.loading.hide();
+        this.timer = void 0;
+      }, 3000);
     },
   },
 });
