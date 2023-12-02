@@ -29,11 +29,15 @@ export default {
   watch: {
     pergunta(val, oldVal) {
       if (val != oldVal) {
-        this.resposta = null;
+        this.resposta = 0;
       }
     },
     resposta(val, oldVal) {
       switch (val) {
+        case 0:
+          this.cores = ["green-7", "light-green-5", "amber-6", "deep-orange-5"];
+          break;
+
         case 1:
           this.cores = ["green-7", "green-7", "green-7", "green-7"];
 

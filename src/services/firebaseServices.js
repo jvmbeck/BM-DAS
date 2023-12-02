@@ -12,22 +12,8 @@ const firebaseServices = {
         appStore.perguntas.push(data)
       } else {
         console.log("No data available");
-
       }
     });
-    /* get(child(dbRef, `/perguntas/`)).then((snapshot) => {
-            if (snapshot.exists()) {
-
-                appStore.perguntas.push(snapshot.val())
-                console.log(perguntas[0]);
-
-            } else {
-                console.log("No data available");
-            }
-        }).catch((error) => {
-            console.error(error);
-        });
- */
   },
 
   getRespostaHoje() {
@@ -36,15 +22,24 @@ const firebaseServices = {
     const referenciaResposta = ref(database, '/resultados/' + idUsuario + "/" + services.getData() + "/");
     onValue(referenciaResposta, (snapshot) => {
       if (snapshot.exists()) {
-        console.log("Respondeu hoje");
         existe = true;
       } else {
-        console.log("Não respondeu hoje");
         existe = false;
       }
     });
     return existe;
+  },
 
+  getRespostasAntigas() {
+    const idUsuario = localStorage.getItem("id");
+    const refDatas = ref(database, '/resultados/' + idUsuario + "/");
+    onValue(refDatas, (snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        var result = snapshot.val()
+        return result
+      }
+    })
   },
 
   async criaUsuario() {
@@ -56,10 +51,8 @@ const firebaseServices = {
   },
 
   async salvaRespostaNoBanco(resultado) {
-
     const idUsuario = localStorage.getItem("id");
     const userRef = ref(database, '/resultados/' + idUsuario + "/" + services.getData());
-
     set(userRef, {
       resposta: resultado,
     });
