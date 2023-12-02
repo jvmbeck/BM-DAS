@@ -12,7 +12,6 @@ const firebaseServices = {
         appStore.perguntas.push(data)
       } else {
         console.log("No data available");
-
       }
     });
   },

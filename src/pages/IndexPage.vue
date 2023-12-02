@@ -13,7 +13,6 @@
         rounded
         size="35px"
       ></q-btn>
-      {{ result }}
     </div>
   </q-page>
 </template>
