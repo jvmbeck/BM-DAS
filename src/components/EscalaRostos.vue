@@ -1,9 +1,9 @@
 <template>
-  <q-card class="my-card flex flex-center">
+  <q-card class="my-card">
     <q-card-section>
       <div class="text-h6 flex flex-center">{{ pergunta }}</div>
       <div class="q-pa-md escala-resposta">
-        <h4 class="escala-esq float-left">Pouco</h4>
+        <h4 class="escala-esq">Pouco</h4>
         <q-rating
           class="opcoes"
           v-model="resposta"
@@ -14,7 +14,7 @@
           :icon="icons"
           @update:model-value="selecionado"
         />
-        <h4 class="escala-dir float-right">Muito</h4>
+        <h4 class="escala-dir">Muito</h4>
       </div>
     </q-card-section>
   </q-card>
@@ -97,9 +97,8 @@ export default {
   width: 100%;
   min-width: 700px;
   max-width: 900px;
-  min-height: 300px;
-  max-height: 400px;
   margin-top: 5%;
+  border: 0px;
 }
 
 .escala-resposta {
