@@ -95,8 +95,10 @@ export default {
 <style scoped>
 .my-card {
   width: 100%;
-  min-width: 500px;
-  max-width: 700px;
+  min-width: 700px;
+  max-width: 900px;
+  margin-top: 5%;
+  border: 0px;
 }
 
 .escala-resposta {

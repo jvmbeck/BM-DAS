@@ -25,9 +25,7 @@ const services = {
   },
 
   getPergunta(idx) {
-    console.log(appStore.perguntas[0][idx]);
     return appStore.perguntas[0][idx];
-
   },
 
   getTamanhoLista() {

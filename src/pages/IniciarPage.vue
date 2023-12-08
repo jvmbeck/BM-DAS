@@ -2,29 +2,68 @@
   <q-page class="flex-center flex">
     <q-card class="card q-pa-sm">
       <q-card-section>
-        <div class="text-h3 text-center">Termos de Uso</div>
+        <div class="text-h4 text-center">
+          <strong>Termo de Consentimento para Coleta de Informações</strong>
+        </div>
       </q-card-section>
       <q-separator />
 
       <q-card-section class="q-pt-none">
-        <q-scroll-area class="text-center" style="height: 300px">
-          <div v-for="n in 100" :key="n" class="q-py-xs">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </div>
+        <q-scroll-area
+          class="text-subtitle1 text-justify"
+          style="height: 300px"
+        >
+          <br />
+
+          A DriveLife agradece sua participação no protótipo de coleta de
+          informações. Este termo de consentimento tem o objetivo de esclarecer
+          os detalhes relacionados à coleta de dados, garantindo transparência e
+          segurança quanto ao uso das informações fornecidas.
+          <br />
+          <strong>1. Objetivo da Coleta de Informações:</strong>
+          <br />
+          A coleta de dados durante o uso do protótipo tem como propósito a
+          melhoria contínua dos serviços oferecidos pela DriveLife. As respostas
+          e informações compartilhadas serão utilizadas estritamente para fins
+          de análise interna, desenvolvimento e aprimoramento dos recursos
+          oferecidos.
+          <br />
+          <strong>2. Responsabilidade e Privacidade dos Dados:</strong>
+          <br />
+          A DriveLife se compromete a ser responsável pela coleta e
+          armazenamento seguro dos dados fornecidos. As respostas serão tratadas
+          de forma estritamente anônima, sem qualquer associação com informações
+          pessoais identificáveis.
+          <br />
+          <strong>3. Anonimato das Respostas: </strong>
+          <br />
+          Suas respostas serão agregadas aos dados coletados, mantendo total
+          anonimato. Não haverá divulgação pública de informações individuais ou
+          identificáveis sem seu consentimento expresso.
+          <br />
+          <strong>4. Direito de Retirada e Confidencialidade:</strong>
+          <br />
+          Você tem o direito de interromper sua participação a qualquer momento,
+          sem penalidades ou prejuízos. Além disso, a DriveLife garantirá a
+          confidencialidade das informações coletadas, adotando medidas de
+          segurança adequadas para proteger seus dados contra acesso não
+          autorizado.
+          <br />
+          <br />
+          Ao concordar com este termo de consentimento, você autoriza a
+          DriveLife a coletar e utilizar suas informações de acordo com os
+          termos estipulados acima, para os fins exclusivos de aprimoramento do
+          protótipo.
         </q-scroll-area>
       </q-card-section>
       <q-separator />
-      <q-card-action>
-        <div>
-          <q-checkbox
-            v-model="concordo"
-            label="Concordo com os termos de uso do app"
-          />
-        </div>
-
+      <q-card-actions align="between">
+        <q-checkbox
+          v-model="concordo"
+          label="Concordo com os termos de uso do app"
+        />
         <q-btn label="Continuar" :disable="!concordo" to="/teste"></q-btn>
-      </q-card-action>
+      </q-card-actions>
     </q-card>
   </q-page>
 </template>
