@@ -1,7 +1,7 @@
 <template>
-  <TesteDesktop v-show="desktop"></TesteDesktop>
+  <TesteDesktop v-if="desktop"></TesteDesktop>
 
-  <TesteMobile v-show="mobile"></TesteMobile>
+  <TesteMobile v-if="mobile"></TesteMobile>
 </template>
 
 <script>

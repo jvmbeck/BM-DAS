@@ -88,7 +88,6 @@ export default {
         this.idx++;
         this.pergunta = services.getPergunta(this.idx);
         this.visivelAnterior = true;
-        document.getElementById("btnProximo").disabled = true;
       }
       services.salvaResposta(this.resposta, this.idx);
       this.limpaTela();
@@ -100,12 +99,10 @@ export default {
     },
     selecionado(valor) {
       services.salvaResposta(valor, this.idx);
-      document.getElementById("btnProximo").disabled = false;
 
       switch (valor) {
         case 1:
-          document.getElementById("divFundo").style.backgroundColor =
-            "LimeGreen";
+          document.getElementById("divFundo").style.background = "LimeGreen";
 
           break;
         case 2:
@@ -113,12 +110,10 @@ export default {
             "LightGreen";
 
           break;
-
         case 3:
           document.getElementById("divFundo").style.backgroundColor = "Khaki";
 
           break;
-
         case 4:
           document.getElementById("divFundo").style.backgroundColor =
             "SandyBrown";
