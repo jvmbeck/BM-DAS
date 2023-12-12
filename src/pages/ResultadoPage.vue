@@ -70,11 +70,11 @@ export default {
     if (window.innerWidth < 1200) {
       this.desktop = false;
     }
-    this.resultado = services.calculaResposta();
-    this.resultadoDepressao = services.calculaDepressao(this.resultado);
-    this.resultadoAnsiedade = services.calculaAnsiedade(this.resultado);
-    this.resultadoEstresse = services.calculaEstresse(this.resultado);
-    firebaseServices.salvaRespostaNoBanco(this.resultado);
+    services.calculaResposta();
+    this.resultadoDepressao = services.calculaDepressao();
+    this.resultadoAnsiedade = services.calculaAnsiedade();
+    this.resultadoEstresse = services.calculaEstresse();
+    firebaseServices.salvaRespostaNoBanco();
   },
 };
 </script>
