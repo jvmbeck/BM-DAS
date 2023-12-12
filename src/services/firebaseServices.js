@@ -50,11 +50,14 @@ const firebaseServices = {
     }
   },
 
-  async salvaRespostaNoBanco(resultado) {
+  async salvaRespostaNoBanco() {
     const idUsuario = localStorage.getItem("id");
     const userRef = ref(database, '/resultados/' + idUsuario + "/" + services.getData());
     set(userRef, {
-      resposta: resultado,
+      resposta: appStore.respostas,
+      depressao: appStore.depressao,
+      ansiedade: appStore.ansiedade,
+      estresse: appStore.estresse
     });
 
   },
