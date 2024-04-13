@@ -2,9 +2,9 @@
   <q-page class="flex flex-center">
     <div style="text-align: center">
       <h2 v-show="existeID">Bem vindo de volta</h2>
-      <img alt="Quasar logo" src="~assets/logo-driver-life.svg" class="logo" />
+      <img alt="Quasar logo" src="~assets/brasaoBM.jpg" class="logo" />
       <br />
-      <div class="text-h2 titulo">Drive Life</div>
+      <div class="text-h2 titulo">BM - DAS</div>
       <br />
       <q-btn
         id="btnIniciar"

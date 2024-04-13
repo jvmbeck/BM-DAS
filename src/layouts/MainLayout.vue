@@ -11,10 +11,12 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> Drive Life </q-toolbar-title>
+        <q-toolbar-title> BM - DAS </q-toolbar-title>
 
         <div>v 0.0.1</div>
       </q-toolbar>
+      <div class="cabecalho"></div>
+
     </q-header>
 
     <!-- <q-drawer
@@ -36,6 +38,15 @@
         />
       </q-list>
     </q-drawer> -->
+
+    <q-footer elevated bordered>
+      <div class="cabecalho"></div>
+
+        <q-toolbar>
+          <q-toolbar-title></q-toolbar-title>
+        </q-toolbar>
+
+      </q-footer>
 
     <q-page-container>
       <router-view />
@@ -112,3 +123,14 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+
+.cabecalho {
+
+  height: 1vh;
+  width: 100%;
+  background-color: #dec208;
+}
+
+</style>
