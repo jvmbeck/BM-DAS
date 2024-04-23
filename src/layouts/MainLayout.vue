@@ -2,16 +2,9 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
 
-        <q-toolbar-title> BM - DAS </q-toolbar-title>
+        <q-toolbar-title> Drive Life </q-toolbar-title>
 
         <div>v 0.0.1</div>
       </q-toolbar>
@@ -42,11 +35,11 @@
     <q-footer elevated bordered>
       <div class="cabecalho"></div>
 
-        <q-toolbar>
-          <q-toolbar-title></q-toolbar-title>
-        </q-toolbar>
+      <q-toolbar>
+        <q-toolbar-title></q-toolbar-title>
+      </q-toolbar>
 
-      </q-footer>
+    </q-footer>
 
     <q-page-container>
       <router-view />
@@ -125,12 +118,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 .cabecalho {
 
   height: 1vh;
   width: 100%;
   background-color: #dec208;
 }
-
 </style>
