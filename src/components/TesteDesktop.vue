@@ -20,11 +20,12 @@
         @click="perguntaProxima"
       ></q-btn>
       <q-btn
+        id="btnResultado"
         class="on-right"
         label="resultados"
         v-show="visivelResultado"
-        to="/resultados"
-      ></q-btn>
+        @click="vaiParaResultado"
+        ></q-btn>
     </div>
 
     <q-circular-progress
@@ -68,6 +69,8 @@ export default {
 
   methods: {
     perguntaAnterior() {
+      document.getElementById("btnProximo").disabled = true;
+      document.getElementById("btnResultado").disabled = true;
       if (this.idx <= 1) {
         this.visivelAnterior = false;
       }
@@ -77,30 +80,30 @@ export default {
         this.visivelResultado = false;
       }
       this.pergunta = services.getPergunta(this.idx);
+      this.limpaTela();
       this.moveBarra();
     },
     perguntaProxima() {
-      if (this.idx >= services.getTamanhoLista() - 1) {
+      if (this.idx >= services.getTamanhoLista() - 2) {
         this.visivelProximo = false;
         this.visivelResultado = true;
+        document.getElementById("btnResultado").disabled = true;
       }
       if (this.idx < services.getTamanhoLista() - 1) {
         this.idx++;
         this.pergunta = services.getPergunta(this.idx);
         this.visivelAnterior = true;
         document.getElementById("btnProximo").disabled = true;
+        document.getElementById("btnResultado").disabled = true;
       }
       services.salvaResposta(this.resposta, this.idx);
       this.limpaTela();
       this.moveBarra();
     },
-    moveBarra() {
-      var tamPercent = 100 / services.getTamanhoLista();
-      this.valorBarra = Math.ceil(tamPercent * (this.idx + 1));
-    },
     selecionado(valor) {
       services.salvaResposta(valor, this.idx);
       document.getElementById("btnProximo").disabled = false;
+      document.getElementById("btnResultado").disabled = false;
 
       switch (valor) {
         case 1:
@@ -135,6 +138,14 @@ export default {
       document.getElementById("divFundo").style.backgroundColor = "SeaShell";
       this.resposta = 0;
     },
+    moveBarra() {
+      var tamPercent = 100 / services.getTamanhoLista();
+      this.valorBarra = Math.ceil(tamPercent * (this.idx + 1));
+    },
+    vaiParaResultado(){
+      this.$router.push("/resultados");
+    },
+
   },
 };
 </script>
