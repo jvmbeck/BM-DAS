@@ -34,7 +34,7 @@
         fab
         icon="input"
         color="blue"
-        to="/resultados"
+        @click="vaiParaResultado"
         v-show="visivelResultado"
       />
     </q-page-sticky>
@@ -80,7 +80,7 @@ export default {
       this.moveBarra();
     },
     perguntaProxima() {
-      if (this.idx >= services.getTamanhoLista() - 1) {
+      if (this.idx >= services.getTamanhoLista() - 2) {
         this.visivelProximo = false;
         this.visivelResultado = true;
       }
@@ -130,6 +130,10 @@ export default {
       document.getElementById("divFundo").style.backgroundColor = "SeaShell";
       this.resposta = 0;
     },
+    vaiParaResultado(){
+      this.$router.push("/resultados");
+    },
+
   },
 };
 </script>

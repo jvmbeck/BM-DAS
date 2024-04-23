@@ -4,6 +4,7 @@ import { appStore } from '../stores/appStore';
 
 const services = {
   salvaResposta(valor, idx) {
+    valor--;
     if (appStore.respostas[idx] != null) {
       appStore.respostas[idx] = valor;
     } else {

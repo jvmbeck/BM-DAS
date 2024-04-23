@@ -158,9 +158,9 @@ module.exports = configure(function (ctx) {
 
 
       manifest: {
-        name: `Drive Life`,
-        short_name: `Drive Life`,
-        description: `A Quasar Project`,
+        name: `BM-DAS`,
+        short_name: `BM-DAS`,
+        description: `Questionário de avaliação de Depressão, Ansiedade e Estresse baseado no DASS-21`,
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',

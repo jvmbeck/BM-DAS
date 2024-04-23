@@ -37,8 +37,8 @@
           <br />
           As informações coletadas poderão ser compartilhadas com os setores de saúde e de informática da corporação sempre na forma estratificada e agrupada, sempre tomando o cuidado de anonimizar o dado individual de cada participante. O BM-DAS nunca fornecerá seus dados de forma individual e para usos que não os fins de pesquisa acadêmica.          <br />
           <br />
-          Ao concordar com este termo de consentimento, você autoriza a
-          DriveLife a coletar e utilizar suas informações de acordo com os
+          Ao concordar com este termo de consentimento, você autoriza o
+          BM-DAS a coletar e utilizar suas informações de acordo com os
           termos estipulados acima, para os fins exclusivos de aprimoramento do
           protótipo.
         </q-scroll-area>

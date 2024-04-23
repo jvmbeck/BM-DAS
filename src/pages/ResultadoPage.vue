@@ -1,13 +1,12 @@
 <template>
-  <q-page class="flex flex-center fundo" style="background-color: bisque">
+  <q-page class="flex flex-center fundo">
     <h5 class="text-h4">Resultados</h5>
 
-    <TabelaPontuacao v-show="desktop"></TabelaPontuacao>
 
     <h5></h5>
 
     <div class="resultados">
-      <q-card dark bordered class="bg-grey-9 card-resultado">
+      <q-card dark bordered class="card-resultado" style="background-color: #555347;">
         <q-card-section>
           <div class="text-subtitle2">Depressão</div>
         </q-card-section>
@@ -18,7 +17,7 @@
           <div class="text-h4">{{ resultadoDepressao }}</div>
         </q-card-section>
       </q-card>
-      <q-card dark bordered class="bg-grey-9 card-resultado">
+      <q-card dark bordered class="card-resultado" style=" background-color: #555347">
         <q-card-section>
           <div class="text-subtitle2">Ansiedade</div>
         </q-card-section>
@@ -29,7 +28,7 @@
           <div class="text-h4">{{ resultadoAnsiedade }}</div>
         </q-card-section>
       </q-card>
-      <q-card dark bordered class="bg-grey-9 card-resultado">
+      <q-card dark bordered class="card-resultado" style="background-color: #555347;">
         <q-card-section>
           <div class="text-subtitle2">Estresse</div>
         </q-card-section>
@@ -45,16 +44,11 @@
 </template>
 
 <script>
-import TabelaPontuacao from "src/components/TabelaPontuacao.vue";
 import firebaseServices from "src/services/firebaseServices";
 import services from "src/services/services";
 
 export default {
   name: "ResultadoPage",
-
-  components: {
-    TabelaPontuacao,
-  },
 
   data() {
     return {
